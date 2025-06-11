@@ -60,7 +60,7 @@ export class AdminDashboardComponent implements OnInit {
     }
 
     this.petService.addPet(this.pet);
-    this.petService.refreshPetsFromStorage(); // 🔁 dodato
+    this.petService.refreshPetsFromStorage();
     this.loadPets();
     this.resetForm();
   }
@@ -72,14 +72,14 @@ export class AdminDashboardComponent implements OnInit {
 
   updatePet() {
     this.petService.updatePet(this.pet);
-    this.petService.refreshPetsFromStorage(); // 🔁 dodato
+    this.petService.refreshPetsFromStorage();
     this.loadPets();
     this.resetForm();
   }
 
   deletePet(petId: number) {
     this.petService.deletePet(petId);
-    this.petService.refreshPetsFromStorage(); // 🔁 dodato
+    this.petService.refreshPetsFromStorage();
     this.loadPets();
   }
 

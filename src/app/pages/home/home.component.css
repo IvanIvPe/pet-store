@@ -2,9 +2,9 @@
   background-image: url('https://cdn.pixabay.com/photo/2017/08/07/18/57/dog-2606759_1280.jpg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-attachment: fixed; /* Fiksna pozadina */
-  background-size: cover; /* Pokriva ceo ekran */
-  height: 100vh; /* Puna visina ekrana */
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

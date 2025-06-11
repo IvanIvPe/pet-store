@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, OnInit, AfterViewChecked } from '@ang
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../services/auth.service'; // <- proveri putanju!
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-chatbot',
