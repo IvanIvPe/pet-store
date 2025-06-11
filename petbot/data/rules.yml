@@ -1,0 +1,66 @@
+version: "3.1"
+
+rules:
+- rule: Search pet by type
+  steps:
+    - intent: search_pet_by_type
+    - action: search_pet_form
+    - active_loop: search_pet_form
+
+- rule: Submit search_pet_form
+  condition:
+    - active_loop: search_pet_form
+  steps:
+    - action: search_pet_form
+    - active_loop: null
+    - action: action_search_pet
+
+- rule: Search pet by origin
+  steps:
+    - intent: search_pet_by_origin
+    - action: action_search_pet
+
+- rule: Search pet by size
+  steps:
+    - intent: search_pet_by_size
+    - action: action_search_pet
+
+- rule: Search pet by price
+  steps:
+    - intent: search_pet_by_price
+    - action: action_search_pet
+
+- rule: Reserve pet
+  steps:
+    - intent: reserve_pet
+    - action: action_reserve_pet
+
+- rule: Show cart
+  steps:
+    - intent: show_cart
+    - action: action_show_cart
+
+- rule: Cancel a reservation
+  steps:
+    - intent: cancel_reservation
+    - action: action_cancel_reservation
+
+- rule: Reset filters
+  steps:
+    - intent: reset_filters
+    - action: action_reset_filters
+
+- rule: Greet user
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: Goodbye user
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+- rule: Fallback when the user says something unclear
+  steps:
+    - intent: nlu_fallback
+    - action: utter_default

@@ -1,0 +1,23 @@
+<mat-card>
+    <h2>Checkout</h2>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Full Name</mat-label>
+      <input matInput [(ngModel)]="customerName" type="text">
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Address</mat-label>
+      <input matInput [(ngModel)]="address" type="text">
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput [(ngModel)]="phone" type="text">
+    </mat-form-field>
+  
+    <h3>Total: ${{ totalPrice }}</h3>
+  
+    <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
+  </mat-card>
+  

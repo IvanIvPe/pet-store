@@ -1,0 +1,30 @@
+<div class="pet-details">
+  <mat-card *ngIf="pet">
+    <img [src]="pet.image" alt="{{ pet.name }}" class="pet-image">
+
+    <mat-card-title>{{ pet.name }}</mat-card-title>
+    <mat-card-subtitle>{{ pet.type }} • {{ pet.size }} • {{ pet.age }} year/s</mat-card-subtitle>
+
+    <mat-card-content>
+      <p><strong>Description:</strong> {{ pet.description }}</p>
+      <p><strong>Guidelines:</strong> {{ pet.careGuide }}</p>
+      <p><strong>Origin:</strong> {{ pet.origin }}</p>
+      <p><strong>Price:</strong> {{ pet.price }} RSD</p>
+
+      <div *ngIf="pet.reviews.length > 0" class="reviews-section">
+        <h4>Reviews:</h4>
+        <div *ngFor="let review of pet.reviews" class="review">
+          <p><strong>{{ review.user }}</strong>: {{ review.rating }} ⭐</p>
+          <p>{{ review.comment }}</p>
+        </div>
+      </div>
+      <div *ngIf="pet.reviews.length === 0">
+        <p>There are no reviews for this pet yet.</p>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addToCart()">Reserve</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

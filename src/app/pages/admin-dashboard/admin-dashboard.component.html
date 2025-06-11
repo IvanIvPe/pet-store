@@ -1,0 +1,67 @@
+<div class="admin-dashboard">
+  <h2>Admin Dashboard</h2>
+
+  <mat-card class="pet-form">
+    <h3>{{ isEditing ? 'Edit Pet' : 'Add New Pet' }}</h3>
+
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="pet.name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Picture (URL)</mat-label>
+        <input matInput [(ngModel)]="pet.image">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="pet.description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Race</mat-label>
+        <input matInput [(ngModel)]="pet.type">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" [(ngModel)]="pet.age">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Size</mat-label>
+        <input matInput [(ngModel)]="pet.size">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" [(ngModel)]="pet.price">
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" (click)="isEditing ? updatePet() : addPet()">
+        {{ isEditing ? 'Update Pet' : 'Add Pet' }}
+      </button>
+      <button mat-raised-button color="warn" *ngIf="isEditing" (click)="resetForm()">Cancel</button>
+    </div>
+  </mat-card>
+
+  <div class="pets-container">
+    <mat-card *ngFor="let pet of pets" class="pet-card">
+      <img mat-card-image [src]="pet.image" alt="{{ pet.name }}">
+      <mat-card-title>{{ pet.name }}</mat-card-title>
+      <mat-card-subtitle>{{ pet.type }} - {{ pet.size }}</mat-card-subtitle>
+      <mat-card-content>
+        <p>{{ pet.description }}</p>
+        <p><strong>Price:</strong> {{ pet.price }}$</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="editPet(pet)">Edit</button>
+        <button mat-button color="warn" (click)="deletePet(pet.id)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

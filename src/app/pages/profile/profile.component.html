@@ -1,0 +1,55 @@
+<mat-card class="profile-card">
+  <h2>My profile</h2>
+
+  <div *ngIf="user">
+    <mat-form-field appearance="outline">
+      <mat-label>Full name</mat-label>
+      <input matInput [(ngModel)]="user.name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="user.email" type="email" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput [(ngModel)]="user.phone" type="tel" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Adress</mat-label>
+      <input matInput [(ngModel)]="user.address" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Favorite type of animals</mat-label>
+      <mat-select [(ngModel)]="user.favoriteTypes" multiple>
+        <mat-option *ngFor="let type of allPetTypes" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="saveChanges()">Save changes</button>
+  </div>
+</mat-card>
+
+<mat-card class="profile-card" style="margin-top: 24px;">
+  <h2>Change password</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Old password</mat-label>
+    <input matInput type="password" [(ngModel)]="oldPassword" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>New password</mat-label>
+    <input matInput type="password" [(ngModel)]="newPassword" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Confirm new password</mat-label>
+    <input matInput type="password" [(ngModel)]="confirmPassword" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" (click)="changePassword()">Change password</button>
+</mat-card>

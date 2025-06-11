@@ -1,0 +1,128 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - Hello
+    - Hi
+    - Good evening
+    - Good afternoon
+    - Good morning
+    - Hey
+
+- intent: goodbye
+  examples: |
+    - Goodbye
+    - See you later
+    - Bye
+
+- intent: search_pet_by_type
+  examples: |
+    - [Dog](type)
+    - [dog](type)
+    - [Cat](type)
+    - [cat](type)
+    - [Fish](type)
+    - [Parrot](type)
+    - What [dogs](type) do you have?
+    - Do you have [cats](type)?
+    - I'm looking for a [fish](type).
+    - I want to buy a [parrot](type).
+    - I want a [dog](type)
+    - I want a [cat](type)
+    - Show me a [rabbit](type)
+    - I'm interested in a [fish](type)
+    - Looking for a [parrot](type)
+    - Do you sell [birds](type)?
+    - Show me [dogs](type)
+    - I would like a [dog](type)
+    - I need a [cat](type)
+    - Please show me [dogs](type)
+    - Can I see your [parrots](type)?
+
+- intent: search_pet_by_origin
+  examples: |
+    - What pets are from [Serbia](origin)?
+    - Do you have pets from [Germany](origin)?
+    - Show me pets from [Italy](origin)
+    - I want a pet from [France](origin)
+    - [Serbia](origin)
+    - [Germany](origin)
+    - [France](origin)
+    - I want a [Parrot](type) from [Serbia](origin)
+    - Show me [Cats](type) from [Germany](origin)
+    - Do you have [Dogs](type) from [Italy](origin)?
+    - Any origin
+    - It doesn't matter
+    - I don't care
+    - No preference
+    - No
+    - Any
+    - From anywhere
+    - Anywhere
+
+- intent: search_pet_by_size
+  examples: |
+    - I want a [small](size) pet.
+    - Do you have a [large](size) dog?
+    - Recommend me a [medium](size) pet.
+
+- intent: search_pet_by_price
+  examples: |
+    - I am looking for a pet under [300](price) euros.
+    - I have a budget of [250](price) euros.
+    - My budget is [200](price)
+    - Can I see pets under [400](price)?
+    - Only show pets below [150](price)
+    - [500](price)
+    - [50](price)
+    - [1000](price)
+
+- intent: reserve_pet
+  examples: |
+    - I want to reserve [Bella](name)
+    - Reserve [Luna](name) for me
+    - Book [Coco](name)
+    - Adopt [Coco](name)
+    - I'd like to adopt [Max](name)
+    - Can I reserve [Charlie](name)?
+    - I want to adopt [Simba](name)
+
+- intent: show_cart
+  examples: |
+    - Show my cart
+    - What have I reserved?
+    - Show my reservations
+    - My cart
+    - What pets did I reserve?
+
+- intent: cancel_reservation
+  examples: |
+    - Cancel my reservation for [Bella](name)
+    - Remove reservation  [Coco](name)
+    - Remove reservation for[Rocky](name)
+    - I want to cancel the reservation
+    - Cancel reservation for [Luna](name)
+    - Remove [Simba](name) from my cart
+    - Can I undo my reservation for [Max](name)?
+    - cancel [Luna](name)
+    - remove [Luna](name)
+
+- intent: reset_filters
+  examples: |
+    - clear filters
+    - reset filters
+    - remove all filters
+    - start over
+    - show all pets again
+    - remove price filter
+    - remove origin filter
+    - reset search
+
+- intent: nlu_fallback
+  examples: |
+    - sdfhghjkl
+    - lskdqfjwe
+    - what now
+    - asd123
+    - random text

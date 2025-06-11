@@ -1,0 +1,39 @@
+version: "3.1"
+
+stories:
+- story: Greet and start form
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: search_pet_by_type
+      entities:
+        - type: dog
+    - action: search_pet_form
+    - active_loop: search_pet_form
+
+- story: Reserve a pet with email
+  steps:
+    - intent: reserve_pet
+      entities:
+        - name: "Bella"
+        - user_email: "test@example.com"
+    - action: action_reserve_pet
+
+- story: Show cart
+  steps:
+    - intent: show_cart
+      entities:
+        - user_email: "test@example.com"
+    - action: action_show_cart
+
+- story: Cancel reservation
+  steps:
+    - intent: cancel_reservation
+      entities:
+        - name: "Bella"
+    - action: action_cancel_reservation
+
+- story: Reset filter usage
+  steps:
+    - intent: reset_filters
+    - action: action_reset_filters

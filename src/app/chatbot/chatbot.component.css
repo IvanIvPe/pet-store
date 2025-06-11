@@ -1,0 +1,148 @@
+/* Floating button */
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Chat window */
+.chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  max-height: 500px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Header buttons */
+.chat-header-buttons button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.chat-header-buttons button:hover {
+  transform: scale(1.2);
+}
+
+/* Messages area */
+.messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  scroll-behavior: smooth;
+}
+
+/* User and bot messages */
+.user {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.bot {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.message-sender {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #e0e0e0;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+.user .message-bubble {
+  background-color: #007bff;
+  color: white;
+  border-top-right-radius: 0;
+}
+
+.bot .message-bubble {
+  background-color: #e0e0e0;
+  color: black;
+  border-top-left-radius: 0;
+}
+
+/* Input area */
+.input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-area button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0 15px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s;
+}
+
+.input-area button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Slika ljubimca u chatbotu */
+
+::ng-deep .message-bubble img.pet-image {
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  margin: 10px auto;
+}

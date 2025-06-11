@@ -1,0 +1,76 @@
+<!-- FILTERI -->
+<div class="filters">
+  <mat-form-field appearance="fill">
+    <mat-label>Search by name</mat-label>
+    <input matInput [(ngModel)]="searchName" (ngModelChange)="filterPets()">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Race</mat-label>
+    <mat-select [(ngModel)]="selectedType" (selectionChange)="filterPets()">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let type of petTypes" [value]="type">{{ type }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Size</mat-label>
+    <mat-select [(ngModel)]="selectedSize" (selectionChange)="filterPets()">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let size of getUniqueSizes()" [value]="size">{{ size }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Age (min)</mat-label>
+    <input matInput type="number" [(ngModel)]="minAge" (ngModelChange)="filterPets()">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Age (max)</mat-label>
+    <input matInput type="number" [(ngModel)]="maxAge" (ngModelChange)="filterPets()">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Origin</mat-label>
+    <mat-select [(ngModel)]="selectedOrigin" (selectionChange)="filterPets()">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let origin of getUniqueOrigins()" [value]="origin">{{ origin }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Max price</mat-label>
+    <input matInput type="number" [(ngModel)]="maxPrice" (ngModelChange)="filterPets()">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Minimum price</mat-label>
+    <input matInput type="number" min="0" max="5" [(ngModel)]="minRating" (ngModelChange)="filterPets()">
+  </mat-form-field>
+</div>
+
+<p>Total pets: {{ pets.length }}</p>
+<p>Filtered: {{ filteredPets.length }}</p>
+
+<!-- Prikaz ljubimaca -->
+<div *ngIf="filteredPets.length > 0; else nemaLjubimaca" class="pets-container">
+  <mat-card *ngFor="let pet of filteredPets" class="pet-card">
+    <img [src]="pet.image" alt="{{ pet.name }}" class="pet-image" />
+    <mat-card-title>{{ pet.name }}</mat-card-title>
+    <mat-card-subtitle>{{ pet.type }} • {{ pet.size }} • {{ pet.age }} year/s</mat-card-subtitle>
+    <mat-card-content>
+      <p>{{ pet.description }}</p>
+      <p><strong>Origin:</strong> {{ pet.origin }}</p>
+      <p><strong>Price:</strong> {{ pet.price }} RSD</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="addToCart(pet)">Reserve</button>
+      <button mat-button (click)="goToDetails(pet.id)">Details</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<ng-template #nemaLjubimaca>
+  <p>There are no pets matching the given filters.</p>
+</ng-template>

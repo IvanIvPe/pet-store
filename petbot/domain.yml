@@ -1,0 +1,107 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - reserve_pet
+  - search_pet_by_type
+  - search_pet_by_origin
+  - search_pet_by_size
+  - search_pet_by_price
+  - show_cart
+  - cancel_reservation
+  - reset_filters
+  - nlu_fallback
+
+entities:
+  - type
+  - origin
+  - size
+  - price
+  - name
+  - user_email
+
+slots:
+  type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: type
+
+  origin:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: origin
+
+  size:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: size
+
+  price:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: price
+
+  name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: name
+
+  user_email:
+    type: text
+    mappings: []
+
+responses:
+  utter_greet:
+    - text: "Hello! Welcome to our Pet Store 🐾. How can I assist you today?"
+
+  utter_goodbye:
+    - text: "Goodbye! Thank you for visiting our store."
+
+  utter_default:
+    - text: "Sorry, I didn't understand that. Can you please rephrase?"
+
+  utter_fallback:
+    - text: "I'm sorry, I didn't understand that. Could you rephrase?"
+
+  utter_ask_type:
+    - text: "What type of pet are you looking for?"
+
+  utter_ask_origin:
+    - text: "From which country should the pet be?"
+
+  utter_ask_size:
+    - text: "What size pet are you interested in?"
+
+  utter_ask_price:
+    - text: "What is your budget for a pet?"
+
+  utter_iamabot:
+    - text: "I am a digital assistant from the Pet Store, here to help you find your perfect pet!"
+
+actions:
+  - action_search_pet
+  - action_reserve_pet
+  - action_show_cart
+  - action_cancel_reservation
+  - action_debug_slots
+  - action_session_start
+  - action_reset_filters
+
+forms:
+  search_pet_form:
+    required_slots:
+      - type
+      - price
+      - origin
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
