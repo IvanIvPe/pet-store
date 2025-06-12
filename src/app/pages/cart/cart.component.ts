@@ -71,8 +71,16 @@ export class CartComponent implements OnInit {
     this.refreshCart();
   }
 
+  reserve(item: CartItem) {
+    item.status = 'in progress';
+    this.cartService.updateStatus(item.id, 'in progress');
+    this.refreshCart();
+  }
+
   private refreshCart() {
     this.cartItems = this.cartService.getCart();
     this.totalPrice = this.cartService.getTotalPrice();
   }
+
+  
 }

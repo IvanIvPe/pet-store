@@ -8,6 +8,15 @@ import os
 
 p = inflect.engine()
 
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
+from typing import Any, Text, Dict, List
+import json
+import inflect
+
+p = inflect.engine()
+
 class ActionSearchPet(Action):
     def name(self) -> Text:
         return "action_search_pet"
@@ -38,14 +47,31 @@ class ActionSearchPet(Action):
                 price = None
 
         filtered_pets = pets
+
         if pet_type:
-            filtered_pets = [pet for pet in filtered_pets if pet.get('type', '').strip().lower() == pet_type]
-        if origin:
-            filtered_pets = [pet for pet in filtered_pets if origin in pet.get('origin', '').strip().lower()]
+            filtered_pets = [
+                pet for pet in filtered_pets
+                if pet.get('type', '').strip().lower() == pet_type
+            ]
+
+        if origin and origin != "any":
+            filtered_pets = [
+                 pet for pet in filtered_pets
+                if pet.get('origin', '').strip().lower() == origin
+         ]
+
+
         if size:
-            filtered_pets = [pet for pet in filtered_pets if size in pet.get('size', '').strip().lower()]
+            filtered_pets = [
+                pet for pet in filtered_pets
+                if pet.get('size', '').strip().lower() == size
+            ]
+
         if price is not None:
-            filtered_pets = [pet for pet in filtered_pets if pet.get('price', 0) <= price]
+            filtered_pets = [
+                pet for pet in filtered_pets
+                if pet.get('price', 0) <= price
+            ]
 
         if filtered_pets:
             for pet in filtered_pets[:3]:
@@ -62,13 +88,21 @@ class ActionSearchPet(Action):
                     f"</div>"
                 )
                 dispatcher.utter_message(text=message, html=True)
-            return []
+            
+            return [SlotSet("origin", None)]
+        
         else:
             dispatcher.utter_message(
                 text="Unfortunately, I couldn't find a pet that matches your criteria.<br>Please try again with different options.",
                 html=True
             )
-            return [SlotSet("price", None)]
+            return [
+                SlotSet("type", None),
+                SlotSet("origin", None),
+                SlotSet("size", None),
+                SlotSet("price", None)
+            ]
+
 
 
 class ActionReservePet(Action):
@@ -106,13 +140,13 @@ class ActionReservePet(Action):
 
         for item in cart:
             if item['user'] == user_email and item['petId'] == selected_pet['id']:
-                dispatcher.utter_message(text=f"ℹ️ You have already reserved {selected_pet['name']}.")
+                dispatcher.utter_message(text=f"ℹYou have already reserved {selected_pet['name']}.")
                 return []
 
         cart.append({
             "user": user_email,
             "petId": selected_pet['id'],
-            "status": "pending"
+            "status": "waiting"
         })
 
         with open(cart_file, 'w', encoding='utf-8') as f:
@@ -175,7 +209,7 @@ class ActionDebugSlots(Action):
 
         slots = tracker.current_slot_values()
         formatted = json.dumps(slots, indent=2)
-        dispatcher.utter_message(text=f"🧾 Current slot values:\n{formatted}")
+        dispatcher.utter_message(text=f"Current slot values:\n{formatted}")
         return []
 
 

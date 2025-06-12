@@ -10,7 +10,7 @@ export interface CartItem {
   size: string;
   origin: string;
   price: number;
-  status: 'received' | 'in progress' | 'canceled';
+  status: 'waiting' | 'in progress' | 'received' | 'canceled';
   rating?: number;
 }
 
@@ -28,7 +28,7 @@ export class CartService {
     const exists = this.cart.find(p => p.id === pet.id);
     if (exists) return;
 
-    this.cart.push({ ...pet, status: 'in progress' });
+    this.cart.push({ ...pet, status: 'waiting' });
     this.saveCart();
   }
 

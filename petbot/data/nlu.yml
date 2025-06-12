@@ -60,6 +60,10 @@ nlu:
     - Any
     - From anywhere
     - Anywhere
+    - I want a pet from [any](origin)
+    - [any](origin)
+    - it can be from [any](origin) country
+
 
 - intent: search_pet_by_size
   examples: |
